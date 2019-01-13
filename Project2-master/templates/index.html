@@ -1,0 +1,167 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    
+    <!--Add CSS (if necessary)-->
+    <style>
+        .navbar {
+          overflow: hidden;
+          background-color: #333;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .navbar a {
+          float: left;
+          font-size: 16px;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+        
+        .dropdown {
+          float: left;
+          overflow: hidden;
+        }
+        
+        .dropdown .dropbtn {
+          font-size: 16px;  
+          border: none;
+          outline: none;
+          color: white;
+          padding: 14px 16px;
+          background-color: inherit;
+          font-family: inherit;
+          margin: 0;
+        }
+        
+        .navbar a:hover, .dropdown:hover .dropbtn {
+          background-color: red;
+        }
+        
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #dad5d5;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        
+        .dropdown-content a {
+          float: none;
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+          text-align: left;
+          
+        }
+        
+        .dropdown-content a:hover {
+          background-color: #ddd;
+        }
+        
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+        </style>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <!-- D3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+    <link rel="stylesheet" href="./static/css/style.css" />
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+            <a class="navbar-brand" href="#">
+                <h4 class="navbar-nav text-white">
+                    Classic Rock
+                </h4>
+            </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapse_target">
+        <ul class="navbar-nav ml-auto">
+            <!-- <li class="navbar-item dropdown">
+                <a class="dropdown-toggle nav-link" href="#" id="navbardrop" data-toggle="dropdown">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu">
+                    <a href="#" class="dropdown-item">1</a>
+                    <a href="#" class="dropdown-item">2</a>
+                    <a href="#" class="dropdown-item">3</a>
+                    <a href="#" class="dropdown-item">4</a>
+                </div>
+            </li> -->
+            <li class="navbar-item">
+                <a class="nav-link"href="#">
+                    Map
+                </a>
+            </li>
+            <li class = "navbar-item">
+                <a class = "nav-link" href="#">
+                    Other Data
+                </a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+    <div class="container bg-white" style="margin-top: 2em">
+        <div class="row">
+                <h2>
+                    What is popular near you?
+                </h2>
+                <hr>
+                <p>
+                    Freegan shabby chic chambray portland flannel. Literally church-key poutine hella flannel small batch, 
+                    godard master cleanse PBR kinfolk paleo. Blue bottle bicycle rights sartorial disrupt sriracha, 
+                    sustainable pinterest. Hella microdosing poke godard, cred raclette intelligentsia organic disrupt schlitz 
+                    woke lumbersexual.
+                </p>
+                <p>
+                    Locavore kale chips lomo normcore migas XOXO chia 
+                    chillwave polaroid flannel austin tilde meh organic. Synth meggings seitan listicle. 
+                    Yuccie affogato banjo church-key, celiac trust fund unicorn +1 hoodie. 
+                    Asymmetrical franzen thundercats la croix glossier quinoa selvage.
+                </p>
+        </div>
+    </div>
+    <!-- <div id="map" style="width:700px; height: 700px;"></div> -->
+    <div class="well">
+        <h5>SELECT Sample:</h5>
+        <select id="artist" onchange="optionChanged(this.value)"></select>
+       
+    </div>
+    <!-- <div id="mapshow"></div> -->
+    <!-- <div id="artist"></div> -->
+    <div id="map"></div>
+
+    <!-- JS -->
+    <!-- <script type="text/javascript" src="static/js/just-crime.js"></script> -->
+    <script type="text/javascript" src="static/js/config.js"></script>
+    <script type="text/javascript" src="static/js/heatmap.js"></script>
+
+    <!-- Leaflet heatmap plugin-->
+    <script type="text/javascript" src="static/js/leaf_let.js"></script> 
+    <!-- GMaps API Key -->
+    
+    <!-- Other JS -->
+    <!-- <script src="{{ url_for('static', filename='js/app.js') }}"></script> -->
+</body>
+</html>
